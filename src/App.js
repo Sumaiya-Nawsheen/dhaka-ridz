@@ -9,13 +9,21 @@ import Login from './components/Login/Login';
 import Destination from './components/Destination/Destination';
 import Bg from './images/Bg.png';
 import { createContext, useState } from 'react';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 export const UserContext = createContext();
 
 function App() {
 
-  
-  
+  const [newUser, setNewUser] = useState(false);
+  const [registeredUser, setRegisteredUser] = useState({
+    isSignedIn: false,
+    name: '',
+    email: '',
+    password: '',
+    password2 : '',
+    photo: ''
+  });
   const [loggedInUser, setLoggedInUser] = useState({});
 const [facebookUser, setFacebookUser] = useState({});
   return (
@@ -27,7 +35,7 @@ const [facebookUser, setFacebookUser] = useState({});
       width: '100vw',
       height: '100vh'
   }}>
-    <UserContext.Provider value = {{ value:[loggedInUser, setLoggedInUser], value2: [facebookUser, setFacebookUser]}}>
+    <UserContext.Provider value = {{ value:[registeredUser, setRegisteredUser] , value2:[loggedInUser, setLoggedInUser], value3: [facebookUser, setFacebookUser] , value4: [newUser, setNewUser]}}>
     <Router>
    <div>
      <Switch>
@@ -40,9 +48,9 @@ const [facebookUser, setFacebookUser] = useState({});
        <Route path="/login">
          <Login />
        </Route>
-       <Route path="/destination">
+       <PrivateRoute path="/destination">
          <Destination />
-       </Route>
+       </PrivateRoute>
      </Switch>
    </div>
  </Router>
