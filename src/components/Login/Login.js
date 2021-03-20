@@ -31,9 +31,17 @@ const Login = () => {
         firebase.auth().createUserWithEmailAndPassword(registeredUser.email, registeredUser.password)
   .then( res => {
     const newUserInfo = {...registeredUser};
+    const signedUser = {
+    name: registeredUser.name,
+    email: registeredUser.email,
+    password: registeredUser.password
+    };
     newUserInfo.error = '';
     newUserInfo.success = true;
-    setRegisteredUser(newUserInfo);
+    newUserInfo.isSignedIn= true;
+
+    setRegisteredUser(newUserInfo,signedUser);
+    console.log(registeredUser)
     updateUserName(registeredUser.name);
     history.replace(from);
   })
@@ -48,9 +56,15 @@ const Login = () => {
         firebase.auth().signInWithEmailAndPassword(registeredUser.email, registeredUser.password)
         .then(res => {
           const newUserInfo = {...registeredUser};
+          const signedUser = {
+            name: registeredUser.name,
+            email: registeredUser.email,
+            password: registeredUser.password
+            };
           newUserInfo.error = '';
           newUserInfo.success = true;
-          setRegisteredUser(newUserInfo);
+          newUserInfo.isSignedIn= true;
+          setRegisteredUser(newUserInfo,signedUser);
           history.replace(from);
           console.log('sign in user info', registeredUser);
         })
@@ -86,25 +100,6 @@ const updateUserName = name =>{
   }
 
 
-const handleSignOut = () => {
-    firebase.auth().signOut()
-    .then(res => {
-      const signedOutUser = {
-        isSignedIn: false,
-        name: '',
-        email: '',
-        password: '',
-        password2 : '',
-        photo: '',
-        error: '',
-        success: false
-      }
-      setRegisteredUser(signedOutUser);
-    }).catch(err => {
-      // An error happened.
-    });
-  }
-
 
 
 
@@ -115,8 +110,14 @@ const handleGoogleSignIn =() => {
     firebase.auth()
   .signInWithPopup(googleProvider)
   .then((result) => {
-    var user = result.user;
-    setLoggedInUser(user)
+    const {displayName, photoURL , email} = result.user;
+    const signedUser = {
+        isSignedIn: true,
+    name: displayName,
+    email: email,
+    photo: photoURL
+    };
+    setLoggedInUser(signedUser)
     history.replace(from);
     })
     .catch((error) => {
@@ -138,8 +139,14 @@ const handleFacebookSignIn = () => {
   .signInWithPopup(provider)
   .then((result) => {
    // The signed-in user info.
-    var user = result.user;
-   setFacebookUser(user)
+    const {displayName, photoURL , email} = result.user;
+    const signedUser = {
+        isSignedIn: true,
+    name: displayName,
+    email: email,
+    photo: photoURL
+    };
+   setFacebookUser(signedUser)
    history.replace(from);
   })
   .catch((error) => {

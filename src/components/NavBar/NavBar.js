@@ -3,6 +3,12 @@ import { Container,Navbar, Nav, Form, Button , NavItem } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 import { UserContext } from '../../App';
 import projectName from '../../images/Urban Riders.png'
+import firebase from "firebase/app";
+import "firebase/auth";
+import firebaseConfig from '../Login/firebase.config';
+
+
+if (firebase.apps.length ===0 ){firebase.initializeApp(firebaseConfig);}
 const NavBar = () => {
 
     const { value, value2, value3 } = useContext(UserContext);
@@ -14,6 +20,29 @@ const NavBar = () => {
     const handleLogin = () => {
 history.push('/login')
     }
+
+    const handleSignOut = () => {
+        firebase.auth().signOut()
+        .then(res => {
+          const signedOutUser = {
+            isSignedIn: false,
+            name: '',
+            email: '',
+            password: '',
+            password2 : '',
+            photo: '',
+            error: '',
+            success: false
+          }
+          setLoggedInUser(signedOutUser);
+          setRegisteredUser(signedOutUser);
+          setFacebookUser(signedOutUser);
+          history.push('/');
+        }).catch(err => {
+          // An error happened.
+        });
+      }
+    
     return (
         
             <Container >
@@ -38,8 +67,13 @@ history.push('/login')
                 <NavItem  href="/">
                   <Nav.Link as={Link}  style={{color:'black'}}  to="contact">Contact</Nav.Link>
                 </NavItem>
-
-      <Button onClick={handleLogin} style={{color:'black', backgroundColor:"yellowgreen"}} variant="outline-primary"> {registeredUser.name.length>0 ? `${registeredUser.name }` : loggedInUser.displayName>0 ? `${loggedInUser.displayName }` : facebookUser.displayName>0 ? `${facebookUser.displayName }` : 'Login' } </Button>
+{
+    loggedInUser.isSignedIn ? <Button onClick={handleSignOut} style={{color:'black', backgroundColor:"yellowgreen"}} variant="outline-primary">  {loggedInUser.name} </Button>
+    : registeredUser.isSignedIn ? <Button onClick={handleSignOut} style={{color:'black', backgroundColor:"yellowgreen"}} variant="outline-primary">  {registeredUser.name} </Button>
+    : facebookUser.isSignedIn ? <Button onClick={handleSignOut} style={{color:'black', backgroundColor:"yellowgreen"}} variant="outline-primary"> {facebookUser.name} </Button>
+     : <Button onClick={handleLogin} style={{color:'black', backgroundColor:"yellowgreen"}} variant="outline-primary">  Login </Button>
+}
+      
      
      
 

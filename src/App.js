@@ -24,8 +24,20 @@ function App() {
     password2 : '',
     photo: ''
   });
-  const [loggedInUser, setLoggedInUser] = useState({});
-const [facebookUser, setFacebookUser] = useState({});
+  const [loggedInUser, setLoggedInUser] = useState({
+    isSignedIn: false,
+    name: '',
+    email: '',
+    photo: ''
+  });
+const [facebookUser, setFacebookUser] = useState({
+  isSignedIn: false,
+  name: '',
+  email: '',
+  photo: ''
+});
+
+
   return (
     <div  style = {
       {backgroundImage: `url(${Bg})`,
