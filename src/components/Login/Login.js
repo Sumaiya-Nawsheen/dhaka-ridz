@@ -220,10 +220,7 @@ const handleFacebookSignIn = () => {
 <div className = "mt-3" style={{textAlign:"center"}}>
     <p> __________________________________ or _____________________________________</p>
     <button onClick= {handleGoogleSignIn}>Continue with Google</button><br/>
-
-    <h1> Name: {loggedInUser.displayName}</h1>
     <button onClick= {handleFacebookSignIn}>Continue with Facebook</button>
-    <h1> Name: {facebookUser.displayName}</h1>
            </div>
         </div>
     );

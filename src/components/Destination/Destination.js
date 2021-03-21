@@ -8,10 +8,19 @@ import Map from "../../images/Map.png";
 const Destination = () => {
     const [startDate, setStartDate] = useState(new Date());
 
+    const handleDetails = () => {
+        console.log("hello")
+    }
+
     
     return (
         <div>
+
+            <div>
             <NavBar></NavBar>
+            </div>
+            
+            <div>
             <Container>
   <Row>
     <Col lg={4} md={4} sm={4} style={{border:'1px solid black' , backgroundColor:'red' , marginTop: '20px', height:'400px' }}>
@@ -19,13 +28,12 @@ const Destination = () => {
 <Form style={{textAlign:"center", marginTop: '30px'}}>
   <Form.Group controlId="formBasicEmail">
     <Form.Label>Pick From</Form.Label>
-    <Form.Control type="text" placeholder="location" />
-    
+    <Form.Control type="text" placeholder="Starting location" required />
   </Form.Group>
 
   <Form.Group controlId="formBasicPassword">
-    <Form.Label>Pick To</Form.Label>
-    <Form.Control type="text" placeholder="location" />
+    <Form.Label>Drop To</Form.Label>
+    <Form.Control type="text" placeholder="Destination location" required />
   </Form.Group>
   <Form.Group controlId="formBasicCheckbox">
     <Form.Check type="checkbox" label="Check me out" />
@@ -34,13 +42,10 @@ const Destination = () => {
   <DatePicker selected={startDate} onChange={date => setStartDate(date)}  showTimeSelect
   dateFormat="Pp" />
   </Form.Group>
- 
-
-  <Button variant="primary" type="submit">
+ <Button onClick= {handleDetails} variant="primary" >
     Search
   </Button>
 </Form>
-
     </Col>
 
 
@@ -50,6 +55,8 @@ const Destination = () => {
   </Row>
 
 </Container>
+            </div>
+            
         </div>
     );
 };
