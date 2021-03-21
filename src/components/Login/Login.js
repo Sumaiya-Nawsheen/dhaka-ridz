@@ -152,10 +152,7 @@ const Login = () => {
             <NavBar></NavBar>
 
             {/* Register with email & password */}
-            <div style={{ textAlign: "center" }}>
-                <input type="checkbox" onChange={() => setNewUser(!newUser)} name="newUser" id="" />
-                <label htmlFor="newUser">New User Sign up</label>
-            </div>
+            
 
             <Form className="form-container" onSubmit={handleSubmit(onSubmit)}>
                 <h3> {newUser ? 'Create an account' : 'Login'}</h3>
@@ -199,7 +196,13 @@ const Login = () => {
 
                 <input style={{ width: "100%", textAlign: "center" }} type="submit" value={newUser ? "Create an account" : 'Sign in'} />
 
-                <div><span> Already has an account? </span><Link to="/login">Login</Link></div>
+                {/* <div><span> Haven't sign up yet? </span><Link to="/login">Login</Link></div> */}
+
+                <div className="mt-3" style={{ textAlign: "center" }}>
+                <input type="checkbox" onChange={() => setNewUser(!newUser)} name="newUser" id="" />
+                <label htmlFor="newUser">Haven't sign up yet? Click on checkbox.</label>
+            </div>
+
             </Form>
 
 
@@ -210,8 +213,9 @@ const Login = () => {
             {/* google, facebook sign in */}
             <div className="mt-3" style={{ textAlign: "center" }}>
                 <p> __________________________________ or _____________________________________</p>
-                <button onClick={handleGoogleSignIn}>Continue with Google</button><br />
-                <button onClick={handleFacebookSignIn}>Continue with Facebook</button>
+                <button onClick={handleGoogleSignIn}>Continue with Google</button>
+                <br />
+                <button className="mt-3" onClick={handleFacebookSignIn}>Continue with Facebook</button>
             </div>
         </div>
     );
