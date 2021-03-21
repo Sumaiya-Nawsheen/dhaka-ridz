@@ -10,6 +10,8 @@ import Destination from './components/Destination/Destination';
 import Bg from './images/Bg.png';
 import { createContext, useState } from 'react';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import Blog from './components/Blog/Blog';
+import Contact from './components/Contact/Contact';
 
 export const UserContext = createContext();
 
@@ -31,13 +33,11 @@ function App() {
     photo: ''
   });
 const [facebookUser, setFacebookUser] = useState({
-  isSignedIn: false,
-  name: '',
-  email: '',
-  photo: ''
+   isSignedIn: false,
+    name: '',
+    email: '',
+    photo: ''
 });
-
-
   return (
     <div  style = {
       {backgroundImage: `url(${Bg})`,
@@ -62,6 +62,12 @@ const [facebookUser, setFacebookUser] = useState({
        </Route>
        <PrivateRoute path="/destination">
          <Destination />
+       </PrivateRoute>
+       <PrivateRoute path="/blog">
+         <Blog />
+       </PrivateRoute>
+       <PrivateRoute path="/contact">
+         <Contact />
        </PrivateRoute>
      </Switch>
    </div>

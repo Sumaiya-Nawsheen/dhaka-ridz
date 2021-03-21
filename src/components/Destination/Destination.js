@@ -3,7 +3,8 @@ import { Col, Container, Form, Row, Button } from 'react-bootstrap';
 import NavBar from '../NavBar/NavBar';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Map from "../../images/Map.png";
+import Map from '../Map/Map';
+
 
 const Destination = () => {
     const [startDate, setStartDate] = useState(new Date());
@@ -49,19 +50,15 @@ const Destination = () => {
     </Col>
 
 
-    <Col lg={7} md={6} sm={4} style={{  marginTop: '20px', height:'400px', marginLeft:'10px'}}>
-    <img src={Map} style={{  height:'100%'}} alt=""></img>
+    <Col lg={7} md={6} sm={4} style={{  marginTop: '20px', height:'550px', marginLeft:'10px'}}>
+    <Map/>
+    {/* <img src={Map} style={{  height:'100%'}} alt=""></img> */}
         </Col>
-  </Row>
-
-</Container>
-            </div>
-            
+        </Row>
+        </Container>
+        </div>
         </div>
     );
-};
+}
 
 export default Destination;
-
-   
- 

@@ -20,7 +20,7 @@ setTransports(transportsData)
             <NavBar></NavBar>
             </div>
 
-            <div style={{ }}>
+            <div style={{position:'relative' }}>
                 <Container style={{ width: "75%"}}>
                     <Row sm={1} md={2} lg={4}  style={{ display: "flex"}}>
                         {

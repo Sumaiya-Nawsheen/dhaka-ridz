@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Container,Navbar, Nav, Form, Button , NavItem } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 import { UserContext } from '../../App';
-import projectName from '../../images/Urban Riders.png'
+import projectName from '../../images/Urban Riders.jpg'
 import firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from '../Login/firebase.config';
@@ -48,7 +48,7 @@ history.push('/login')
             <Container >
             
   <Navbar>
-  <Navbar.Brand> <img src={projectName} alt='' style={{width:'40%'}}/></Navbar.Brand>
+  <Navbar.Brand> <img src={projectName} alt='' style={{width:'75%'}}/></Navbar.Brand>
     <Nav className="mr-auto">
       </Nav>
     <Form inline>
