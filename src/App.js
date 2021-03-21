@@ -23,7 +23,7 @@ function App() {
     name: '',
     email: '',
     password: '',
-    password2 : '',
+    password2: '',
     photo: ''
   });
   const [loggedInUser, setLoggedInUser] = useState({
@@ -32,54 +32,54 @@ function App() {
     email: '',
     photo: ''
   });
-const [facebookUser, setFacebookUser] = useState({
-   isSignedIn: false,
+  const [facebookUser, setFacebookUser] = useState({
+    isSignedIn: false,
     name: '',
     email: '',
     photo: ''
-});
+  });
   return (
-    <div  style = {
-      {backgroundImage: `url(${Bg})`,
-      backgroundPosition: 'center',
-      backgroundSize: 'cover',
-      backgroundRepeat: 'no-repeat',
-      width: '100vw',
-      height: '100vh'
-  }}>
-    <UserContext.Provider value = {{ value:[registeredUser, setRegisteredUser] , value2:[loggedInUser, setLoggedInUser], value3: [facebookUser, setFacebookUser] , value4: [newUser, setNewUser]}}>
-    <Router>
-   <div>
-     <Switch>
-       <Route exact path="/">
-       <HomePage></HomePage>
-       </Route>
-       <Route  path="/home">
-       <HomePage></HomePage>
-       </Route>
-       <Route path="/login">
-         <Login />
-       </Route>
-       <PrivateRoute path="/destination">
-         <Destination />
-       </PrivateRoute>
-       <PrivateRoute path="/blog">
-         <Blog />
-       </PrivateRoute>
-       <PrivateRoute path="/contact">
-         <Contact />
-       </PrivateRoute>
-     </Switch>
-   </div>
- </Router>
-    </UserContext.Provider>
+    <div style={
+      {
+        backgroundImage: `url(${Bg})`,
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        width: '100vw',
+        height: '100vh'
+      }}>
+      <UserContext.Provider value={{ value: [registeredUser, setRegisteredUser], value2: [loggedInUser, setLoggedInUser], value3: [facebookUser, setFacebookUser], value4: [newUser, setNewUser] }}>
+        <Router>
+          <div>
+            <Switch>
+              <Route exact path="/">
+                <HomePage></HomePage>
+              </Route>
+              <Route path="/home">
+                <HomePage></HomePage>
+              </Route>
+              <Route path="/login">
+                <Login />
+              </Route>
+              <PrivateRoute path="/destination">
+                <Destination />
+              </PrivateRoute>
+              <PrivateRoute path="/blog">
+                <Blog />
+              </PrivateRoute>
+              <PrivateRoute path="/contact">
+                <Contact />
+              </PrivateRoute>
+            </Switch>
+          </div>
+        </Router>
+      </UserContext.Provider>
 
-  </div>
+    </div>
 
-);
+  );
 
-  };
+};
 
-  
 
 export default App;
